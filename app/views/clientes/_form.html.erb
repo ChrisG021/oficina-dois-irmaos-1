@@ -1,0 +1,45 @@
+<%= form_with(model: cliente) do |form| %>
+  <% if cliente.errors.any? %>
+    <div class="alert alert-danger">
+      <strong>Revise os campos destacados:</strong>
+      <ul class="mb-0 mt-2">
+        <% cliente.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row g-3">
+    <div class="col-12">
+      <%= form.label :name, "Nome completo", class: "form-label fw-bold" %>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-person"></i></span>
+        <%= form.text_field :name, class: "form-control #{'is-invalid' if cliente.errors[:name].any?}", placeholder: "Joao Silva", required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <%= form.label :phone, "Telefone / WhatsApp", class: "form-label fw-bold" %>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-whatsapp"></i></span>
+        <%= form.text_field :phone, class: "form-control #{'is-invalid' if cliente.errors[:phone].any?}", placeholder: "(86) 99999-9999", required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <%= form.label :email, "Email", class: "form-label fw-bold" %>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+        <%= form.email_field :email, class: "form-control #{'is-invalid' if cliente.errors[:email].any?}", placeholder: "cliente@email.com", required: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= link_to clientes_path, class: "btn btn-outline-secondary fw-bold" do %>
+      <i class="bi bi-arrow-left"></i> Voltar
+    <% end %>
+    <%= form.submit "Salvar cliente", class: "btn btn-success fw-bold px-4" %>
+  </div>
+<% end %>

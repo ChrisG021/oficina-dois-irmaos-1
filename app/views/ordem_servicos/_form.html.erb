@@ -1,0 +1,68 @@
+<%= form_with(model: ordem_servico) do |form| %>
+  <% if ordem_servico.errors.any? %>
+    <div class="alert alert-danger">
+      <strong>Revise os campos destacados:</strong>
+      <ul class="mb-0 mt-2">
+        <% ordem_servico.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row g-3">
+    <div class="col-12">
+      <%= form.label :veiculo_id, "Veiculo", class: "form-label fw-bold" %>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-car-front"></i></span>
+        <%= form.collection_select :veiculo_id, Veiculo.includes(:cliente).order(:placa), :id, ->(veiculo) { "#{veiculo.placa} - #{veiculo.marca} #{veiculo.modelo} (#{veiculo.cliente.name})" },
+              { prompt: "Selecione o veiculo" },
+              { class: "form-select #{'is-invalid' if ordem_servico.errors[:veiculo].any?}", required: true } %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <%= form.label :status, "Status", class: "form-label fw-bold" %>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-activity"></i></span>
+        <%= form.select :status, OrdemServico::STATUS, {}, class: "form-select #{'is-invalid' if ordem_servico.errors[:status].any?}" %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <%= form.label :data_entrada, "Data de entrada", class: "form-label fw-bold" %>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-calendar-plus"></i></span>
+        <%= form.date_field :data_entrada, class: "form-control #{'is-invalid' if ordem_servico.errors[:data_entrada].any?}", required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <%= form.label :data_saida, "Data de saida", class: "form-label fw-bold" %>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-calendar-check"></i></span>
+        <%= form.date_field :data_saida, class: "form-control #{'is-invalid' if ordem_servico.errors[:data_saida].any?}" %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <%= form.label :valor, "Valor", class: "form-label fw-bold" %>
+      <div class="input-group">
+        <span class="input-group-text">R$</span>
+        <%= form.number_field :valor, step: "0.01", min: "0", class: "form-control #{'is-invalid' if ordem_servico.errors[:valor].any?}", placeholder: "0,00", required: true %>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <%= form.label :descricao, "Descricao do servico", class: "form-label fw-bold" %>
+      <%= form.text_area :descricao, rows: 5, class: "form-control #{'is-invalid' if ordem_servico.errors[:descricao].any?}", placeholder: "Ex: troca de oleo, revisao de freios, alinhamento...", required: true %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= link_to ordem_servicos_path, class: "btn btn-outline-secondary fw-bold" do %>
+      <i class="bi bi-arrow-left"></i> Voltar
+    <% end %>
+    <%= form.submit "Salvar ordem", class: "btn btn-success fw-bold px-4" %>
+  </div>
+<% end %>

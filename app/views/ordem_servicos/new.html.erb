@@ -1,0 +1,15 @@
+<% content_for :title, "Nova Ordem | Oficina Dois Irmaos" %>
+
+<main class="page-shell">
+  <section class="page-heading">
+    <div>
+      <p class="eyebrow">Atendimento</p>
+      <h1>Nova ordem de servico</h1>
+      <p>Registre o servico solicitado, o status, as datas e o valor do atendimento.</p>
+    </div>
+  </section>
+
+  <section class="form-panel">
+    <%= render "form", ordem_servico: @ordem_servico %>
+  </section>
+</main>

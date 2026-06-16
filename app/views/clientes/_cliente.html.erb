@@ -1,0 +1,22 @@
+<tr id="<%= dom_id cliente %>">
+  <td>
+    <div class="fw-bold"><%= cliente.name %></div>
+    <small class="muted-text">Cliente #<%= cliente.id %></small>
+  </td>
+  <td><%= cliente.phone %></td>
+  <td class="text-break"><%= cliente.email %></td>
+  <td><span class="badge text-bg-light border"><%= cliente.veiculos.size %></span></td>
+  <td class="text-end">
+    <div class="d-inline-flex gap-1">
+      <%= link_to cliente, class: "btn btn-sm btn-outline-secondary", title: "Visualizar" do %>
+        <i class="bi bi-eye"></i>
+      <% end %>
+      <%= link_to edit_cliente_path(cliente), class: "btn btn-sm btn-outline-dark", title: "Editar" do %>
+        <i class="bi bi-pencil-square"></i>
+      <% end %>
+      <%= button_to cliente, method: :delete, form: { data: { turbo_confirm: "Excluir este cliente e seus veiculos?" } }, class: "btn btn-sm btn-danger", title: "Excluir" do %>
+        <i class="bi bi-trash"></i>
+      <% end %>
+    </div>
+  </td>
+</tr>

@@ -1,0 +1,54 @@
+<% content_for :title, "Clientes | Oficina Dois Irmaos" %>
+
+<main class="page-shell">
+  <section class="page-heading">
+    <div>
+      <p class="eyebrow">Cadastro</p>
+      <h1>Clientes</h1>
+      <p>Consulte, altere e acompanhe os proprietarios cadastrados na oficina.</p>
+    </div>
+    <div class="action-row">
+      <%= link_to clientes_path(format: :pdf), class: "btn btn-outline-dark fw-bold" do %>
+        <i class="bi bi-file-earmark-pdf"></i> PDF
+      <% end %>
+      <%= link_to new_cliente_path, class: "btn btn-warning fw-bold" do %>
+        <i class="bi bi-person-plus"></i> Novo cliente
+      <% end %>
+    </div>
+  </section>
+
+  <section class="data-panel">
+    <div class="panel-header">
+      <div>
+        <h2>Lista de clientes</h2>
+        <span class="muted-text"><%= @clientes.total_count %> registros encontrados</span>
+      </div>
+    </div>
+
+    <% if @clientes.any? %>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Telefone</th>
+              <th>Email</th>
+              <th>Veiculos</th>
+              <th class="text-end">Acoes</th>
+            </tr>
+          </thead>
+          <tbody id="clientes">
+            <%= render @clientes %>
+          </tbody>
+        </table>
+      </div>
+      <%= paginate @clientes %>
+    <% else %>
+      <div class="empty-state">
+        <i class="bi bi-person-plus"></i>
+        <strong>Nenhum cliente cadastrado</strong>
+        <p class="mb-0">Comece criando o primeiro proprietario atendido pela oficina.</p>
+      </div>
+    <% end %>
+  </section>
+</main>

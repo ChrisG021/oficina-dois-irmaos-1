@@ -1,0 +1,9 @@
+one:
+  name: Joao Silva
+  phone: "(86) 99999-1111"
+  email: joao.fixture@email.com
+
+two:
+  name: Maria Sousa
+  phone: "(86) 98888-2222"
+  email: maria.fixture@email.com

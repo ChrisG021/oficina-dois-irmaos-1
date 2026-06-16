@@ -1,0 +1,43 @@
+<% content_for :title, "Nova Senha | Oficina Dois Irmaos" %>
+
+<main class="auth-wrap">
+  <section class="auth-card">
+    <div class="auth-logo">
+      <span class="brand-icon"><i class="bi bi-shield-lock"></i></span>
+      <div>
+        <h1 class="h4 mb-0 fw-bold">Definir nova senha</h1>
+        <span class="muted-text">Crie uma senha segura para continuar</span>
+      </div>
+    </div>
+
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <%= f.hidden_field :reset_password_token %>
+
+      <div class="mb-3">
+        <%= f.label :password, "Nova senha", class: "form-label fw-bold" %>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-lock"></i></span>
+          <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control", required: true %>
+        </div>
+        <% if @minimum_password_length %>
+          <small class="muted-text">Use pelo menos <%= @minimum_password_length %> caracteres.</small>
+        <% end %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :password_confirmation, "Confirmar nova senha", class: "form-label fw-bold" %>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-check2-circle"></i></span>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", required: true %>
+        </div>
+      </div>
+
+      <%= f.submit "Salvar nova senha", class: "btn btn-warning fw-bold w-100 py-2" %>
+    <% end %>
+
+    <div class="mt-3">
+      <%= render "devise/shared/links" %>
+    </div>
+  </section>
+</main>

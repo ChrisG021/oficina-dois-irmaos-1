@@ -1,0 +1,24 @@
+<tr id="<%= dom_id ordem_servico %>">
+  <td class="fw-bold">#<%= ordem_servico.id %></td>
+  <td><%= link_to ordem_servico.cliente.name, ordem_servico.cliente, class: "link-dark fw-bold" %></td>
+  <td>
+    <span class="plate"><%= ordem_servico.veiculo.placa %></span>
+    <small class="muted-text ms-1"><%= ordem_servico.veiculo.marca %> <%= ordem_servico.veiculo.modelo %></small>
+  </td>
+  <td><span class="badge <%= ordem_servico.status_badge_class %>"><%= ordem_servico.status %></span></td>
+  <td><%= l(ordem_servico.data_entrada) %></td>
+  <td class="text-end"><%= number_to_currency(ordem_servico.valor, unit: "R$ ", separator: ",", delimiter: ".") %></td>
+  <td class="text-end">
+    <div class="d-inline-flex gap-1">
+      <%= link_to ordem_servico, class: "btn btn-sm btn-outline-secondary", title: "Visualizar" do %>
+        <i class="bi bi-eye"></i>
+      <% end %>
+      <%= link_to edit_ordem_servico_path(ordem_servico), class: "btn btn-sm btn-outline-dark", title: "Editar" do %>
+        <i class="bi bi-pencil-square"></i>
+      <% end %>
+      <%= button_to ordem_servico, method: :delete, form: { data: { turbo_confirm: "Excluir esta ordem de servico?" } }, class: "btn btn-sm btn-danger", title: "Excluir" do %>
+        <i class="bi bi-trash"></i>
+      <% end %>
+    </div>
+  </td>
+</tr>

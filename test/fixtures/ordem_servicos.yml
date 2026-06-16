@@ -1,0 +1,15 @@
+one:
+  veiculo: one
+  descricao: Troca de oleo e revisao preventiva
+  status: Aberta
+  valor: 280.00
+  data_entrada: 2026-06-10
+  data_saida:
+
+two:
+  veiculo: two
+  descricao: Substituicao das pastilhas de freio
+  status: Concluida
+  valor: 360.00
+  data_entrada: 2026-06-09
+  data_saida: 2026-06-10

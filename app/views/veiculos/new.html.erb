@@ -1,0 +1,15 @@
+<% content_for :title, "Novo Veiculo | Oficina Dois Irmaos" %>
+
+<main class="page-shell">
+  <section class="page-heading">
+    <div>
+      <p class="eyebrow">Cadastro</p>
+      <h1>Novo veiculo</h1>
+      <p>Vincule o veiculo ao proprietario para abrir ordens de servico.</p>
+    </div>
+  </section>
+
+  <section class="form-panel">
+    <%= render "form", veiculo: @veiculo %>
+  </section>
+</main>

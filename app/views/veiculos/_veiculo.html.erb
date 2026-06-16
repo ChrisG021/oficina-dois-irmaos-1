@@ -1,0 +1,22 @@
+<tr id="<%= dom_id veiculo %>">
+  <td><span class="plate"><%= veiculo.placa %></span></td>
+  <td>
+    <div class="fw-bold"><%= veiculo.marca %> <%= veiculo.modelo %></div>
+    <small class="muted-text">Veiculo #<%= veiculo.id %></small>
+  </td>
+  <td><%= veiculo.ano %></td>
+  <td><%= link_to veiculo.cliente.name, veiculo.cliente, class: "link-dark fw-bold" %></td>
+  <td class="text-end">
+    <div class="d-inline-flex gap-1">
+      <%= link_to veiculo, class: "btn btn-sm btn-outline-secondary", title: "Visualizar" do %>
+        <i class="bi bi-eye"></i>
+      <% end %>
+      <%= link_to edit_veiculo_path(veiculo), class: "btn btn-sm btn-outline-dark", title: "Editar" do %>
+        <i class="bi bi-pencil-square"></i>
+      <% end %>
+      <%= button_to veiculo, method: :delete, form: { data: { turbo_confirm: "Excluir este veiculo e suas ordens?" } }, class: "btn btn-sm btn-danger", title: "Excluir" do %>
+        <i class="bi bi-trash"></i>
+      <% end %>
+    </div>
+  </td>
+</tr>

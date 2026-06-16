@@ -1,0 +1,59 @@
+<% content_for :title, "OS ##{@ordem_servico.id} | Oficina Dois Irmaos" %>
+
+<main class="page-shell">
+  <section class="page-heading">
+    <div>
+      <p class="eyebrow">Ordem de servico</p>
+      <h1>OS #<%= @ordem_servico.id %></h1>
+      <p><%= @ordem_servico.cliente.name %> - <%= @ordem_servico.veiculo.nome_completo %></p>
+    </div>
+    <div class="action-row">
+      <%= link_to edit_ordem_servico_path(@ordem_servico), class: "btn btn-warning fw-bold" do %>
+        <i class="bi bi-pencil-square"></i> Editar
+      <% end %>
+      <%= link_to ordem_servicos_path, class: "btn btn-outline-secondary fw-bold" do %>
+        <i class="bi bi-arrow-left"></i> Voltar
+      <% end %>
+    </div>
+  </section>
+
+  <section class="detail-panel">
+    <div class="detail-grid mb-3">
+      <div class="detail-item">
+        <span>Cliente</span>
+        <strong><%= link_to @ordem_servico.cliente.name, @ordem_servico.cliente, class: "link-dark" %></strong>
+      </div>
+      <div class="detail-item">
+        <span>Veiculo</span>
+        <strong><%= link_to @ordem_servico.veiculo.nome_completo, @ordem_servico.veiculo, class: "link-dark" %></strong>
+      </div>
+      <div class="detail-item">
+        <span>Status</span>
+        <strong><span class="badge <%= @ordem_servico.status_badge_class %>"><%= @ordem_servico.status %></span></strong>
+      </div>
+      <div class="detail-item">
+        <span>Valor</span>
+        <strong><%= number_to_currency(@ordem_servico.valor, unit: "R$ ", separator: ",", delimiter: ".") %></strong>
+      </div>
+      <div class="detail-item">
+        <span>Entrada</span>
+        <strong><%= l(@ordem_servico.data_entrada) %></strong>
+      </div>
+      <div class="detail-item">
+        <span>Saida</span>
+        <strong><%= @ordem_servico.data_saida.present? ? l(@ordem_servico.data_saida) : "Nao informada" %></strong>
+      </div>
+    </div>
+
+    <div class="detail-item">
+      <span>Descricao</span>
+      <strong><%= simple_format(@ordem_servico.descricao) %></strong>
+    </div>
+
+    <div class="form-actions">
+      <%= button_to @ordem_servico, method: :delete, form: { data: { turbo_confirm: "Excluir esta ordem de servico?" } }, class: "btn btn-danger fw-bold" do %>
+        <i class="bi bi-trash"></i> Excluir
+      <% end %>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,35 @@
+<% content_for :title, "Recuperar Senha | Oficina Dois Irmaos" %>
+
+<main class="auth-wrap">
+  <section class="auth-card">
+    <div class="auth-logo">
+      <span class="brand-icon"><i class="bi bi-key"></i></span>
+      <div>
+        <h1 class="h4 mb-0 fw-bold">Recuperar senha</h1>
+        <span class="muted-text">Informe seu email administrativo</span>
+      </div>
+    </div>
+
+    <p class="muted-text mb-4">
+      Enviaremos as instrucoes para redefinir sua senha no email cadastrado.
+    </p>
+
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="mb-3">
+        <%= f.label :email, "Email", class: "form-label fw-bold" %>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "admin@oficina.com", required: true %>
+        </div>
+      </div>
+
+      <%= f.submit "Enviar instrucoes", class: "btn btn-warning fw-bold w-100 py-2" %>
+    <% end %>
+
+    <div class="mt-3">
+      <%= render "devise/shared/links" %>
+    </div>
+  </section>
+</main>

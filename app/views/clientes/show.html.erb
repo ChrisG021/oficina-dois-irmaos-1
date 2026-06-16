@@ -1,0 +1,78 @@
+<% content_for :title, "#{@cliente.name} | Oficina Dois Irmaos" %>
+
+<main class="page-shell">
+  <section class="page-heading">
+    <div>
+      <p class="eyebrow">Ficha do cliente</p>
+      <h1><%= @cliente.name %></h1>
+      <p><%= @cliente.contato_principal %></p>
+    </div>
+    <div class="action-row">
+      <%= link_to new_veiculo_path(cliente_id: @cliente.id), class: "btn btn-warning fw-bold" do %>
+        <i class="bi bi-car-front"></i> Vincular veiculo
+      <% end %>
+      <%= link_to edit_cliente_path(@cliente), class: "btn btn-outline-dark fw-bold" do %>
+        <i class="bi bi-pencil-square"></i> Editar
+      <% end %>
+    </div>
+  </section>
+
+  <section class="detail-panel mb-4">
+    <div class="detail-grid">
+      <div class="detail-item">
+        <span>Telefone</span>
+        <strong><%= @cliente.phone %></strong>
+      </div>
+      <div class="detail-item">
+        <span>Email</span>
+        <strong><%= @cliente.email %></strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="data-panel">
+    <div class="panel-header">
+      <div>
+        <h2>Veiculos do cliente</h2>
+        <span class="muted-text"><%= @veiculos.size %> registros vinculados</span>
+      </div>
+      <%= link_to clientes_path, class: "btn btn-sm btn-outline-secondary fw-bold" do %>
+        <i class="bi bi-arrow-left"></i> Voltar
+      <% end %>
+    </div>
+
+    <% if @veiculos.any? %>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead>
+            <tr>
+              <th>Placa</th>
+              <th>Veiculo</th>
+              <th>Ordens</th>
+              <th class="text-end">Acoes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @veiculos.each do |veiculo| %>
+              <tr>
+                <td><span class="plate"><%= veiculo.placa %></span></td>
+                <td><%= veiculo.marca %> <%= veiculo.modelo %> <span class="muted-text">(<%= veiculo.ano %>)</span></td>
+                <td><span class="badge text-bg-light border"><%= veiculo.ordem_servicos.size %></span></td>
+                <td class="text-end">
+                  <%= link_to veiculo, class: "btn btn-sm btn-outline-secondary" do %>
+                    <i class="bi bi-eye"></i>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <div class="empty-state">
+        <i class="bi bi-car-front"></i>
+        <strong>Nenhum veiculo vinculado</strong>
+      </div>
+    <% end %>
+  </section>
+</main>

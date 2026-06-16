@@ -1,0 +1,79 @@
+"pt-BR":
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      short: "%d/%m"
+      long: "%d de %B de %Y"
+    month_names:
+      - 
+      - janeiro
+      - fevereiro
+      - marco
+      - abril
+      - maio
+      - junho
+      - julho
+      - agosto
+      - setembro
+      - outubro
+      - novembro
+      - dezembro
+  activerecord:
+    models:
+      cliente: Cliente
+      veiculo: Veiculo
+      ordem_servico: Ordem de servico
+      user: Usuario
+    attributes:
+      cliente:
+        name: Nome
+        phone: Telefone
+        email: Email
+      veiculo:
+        placa: Placa
+        marca: Marca
+        modelo: Modelo
+        ano: Ano
+        cliente: Cliente
+      ordem_servico:
+        veiculo: Veiculo
+        descricao: Descricao
+        status: Status
+        valor: Valor
+        data_entrada: Data de entrada
+        data_saida: Data de saida
+      user:
+        email: Email
+        password: Senha
+        password_confirmation: Confirmacao de senha
+  errors:
+    messages:
+      blank: "nao pode ficar em branco"
+      taken: "ja esta em uso"
+      invalid: "nao e valido"
+      too_short: "e muito curto"
+      too_long: "e muito longo"
+      not_a_number: "nao e um numero"
+      greater_than_or_equal_to: "deve ser maior ou igual a %{count}"
+      less_than_or_equal_to: "deve ser menor ou igual a %{count}"
+      accepted: "deve ser aceito"
+      confirmation: "nao confere"
+  devise:
+    failure:
+      unauthenticated: "Faca login para continuar."
+      invalid: "Email ou senha invalidos."
+      not_found_in_database: "Email ou senha invalidos."
+      already_authenticated: "Voce ja esta autenticado."
+    sessions:
+      signed_in: "Login realizado com sucesso."
+      signed_out: "Sessao encerrada com sucesso."
+    registrations:
+      signed_up: "Usuario criado com sucesso."
+      updated: "Usuario atualizado com sucesso."
+  views:
+    pagination:
+      first: "Primeira"
+      last: "Ultima"
+      previous: "Anterior"
+      next: "Proxima"
+      truncate: "..."

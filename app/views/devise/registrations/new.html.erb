@@ -1,0 +1,41 @@
+<% content_for :title, "Criar Usuario | Oficina Dois Irmaos" %>
+
+<main class="auth-wrap">
+  <section class="auth-card">
+    <div class="auth-logo">
+      <span class="brand-icon"><i class="bi bi-person-plus"></i></span>
+      <div>
+        <h1 class="h4 mb-0 fw-bold">Criar usuario</h1>
+        <span class="muted-text">Novo acesso administrativo</span>
+      </div>
+    </div>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="mb-3">
+        <%= f.label :email, "Email", class: "form-label fw-bold" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", required: true %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :password, "Senha", class: "form-label fw-bold" %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control", required: true %>
+        <% if @minimum_password_length %>
+          <small class="muted-text">Minimo de <%= @minimum_password_length %> caracteres.</small>
+        <% end %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :password_confirmation, "Confirmar senha", class: "form-label fw-bold" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", required: true %>
+      </div>
+
+      <%= f.submit "Criar usuario", class: "btn btn-warning fw-bold w-100 py-2" %>
+    <% end %>
+
+    <div class="mt-3">
+      <%= render "devise/shared/links" %>
+    </div>
+  </section>
+</main>

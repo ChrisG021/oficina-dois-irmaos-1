@@ -1,0 +1,13 @@
+one:
+  placa: ABC-1234
+  marca: Fiat
+  modelo: Uno
+  ano: 2015
+  cliente: one
+
+two:
+  placa: XYZ-4321
+  marca: Honda
+  modelo: Civic
+  ano: 2018
+  cliente: two

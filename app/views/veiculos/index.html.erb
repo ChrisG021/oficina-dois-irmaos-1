@@ -1,0 +1,54 @@
+<% content_for :title, "Veiculos | Oficina Dois Irmaos" %>
+
+<main class="page-shell">
+  <section class="page-heading">
+    <div>
+      <p class="eyebrow">Frota atendida</p>
+      <h1>Veiculos</h1>
+      <p>Consulte os veiculos cadastrados e acompanhe seus proprietarios.</p>
+    </div>
+    <div class="action-row">
+      <%= link_to veiculos_path(format: :pdf), class: "btn btn-outline-dark fw-bold" do %>
+        <i class="bi bi-file-earmark-pdf"></i> PDF
+      <% end %>
+      <%= link_to new_veiculo_path, class: "btn btn-warning fw-bold" do %>
+        <i class="bi bi-plus-circle"></i> Novo veiculo
+      <% end %>
+    </div>
+  </section>
+
+  <section class="data-panel">
+    <div class="panel-header">
+      <div>
+        <h2>Lista de veiculos</h2>
+        <span class="muted-text"><%= @veiculos.total_count %> registros encontrados</span>
+      </div>
+    </div>
+
+    <% if @veiculos.any? %>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead>
+            <tr>
+              <th>Placa</th>
+              <th>Veiculo</th>
+              <th>Ano</th>
+              <th>Cliente</th>
+              <th class="text-end">Acoes</th>
+            </tr>
+          </thead>
+          <tbody id="veiculos">
+            <%= render @veiculos %>
+          </tbody>
+        </table>
+      </div>
+      <%= paginate @veiculos %>
+    <% else %>
+      <div class="empty-state">
+        <i class="bi bi-car-front"></i>
+        <strong>Nenhum veiculo cadastrado</strong>
+        <p class="mb-0">Cadastre um veiculo e vincule ao cliente proprietario.</p>
+      </div>
+    <% end %>
+  </section>
+</main>

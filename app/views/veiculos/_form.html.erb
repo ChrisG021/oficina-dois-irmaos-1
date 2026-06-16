@@ -1,0 +1,63 @@
+<%= form_with(model: veiculo) do |form| %>
+  <% if veiculo.errors.any? %>
+    <div class="alert alert-danger">
+      <strong>Revise os campos destacados:</strong>
+      <ul class="mb-0 mt-2">
+        <% veiculo.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row g-3">
+    <div class="col-12">
+      <%= form.label :cliente_id, "Proprietario", class: "form-label fw-bold" %>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
+        <%= form.collection_select :cliente_id, Cliente.order(:name), :id, :name,
+              { prompt: "Selecione o cliente" },
+              { class: "form-select #{'is-invalid' if veiculo.errors[:cliente].any?}", required: true } %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <%= form.label :placa, "Placa", class: "form-label fw-bold" %>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-credit-card-2-front"></i></span>
+        <%= form.text_field :placa, class: "form-control text-uppercase #{'is-invalid' if veiculo.errors[:placa].any?}", placeholder: "ABC-1234", required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <%= form.label :marca, "Marca", class: "form-label fw-bold" %>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-tag"></i></span>
+        <%= form.text_field :marca, class: "form-control #{'is-invalid' if veiculo.errors[:marca].any?}", placeholder: "Fiat", required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <%= form.label :modelo, "Modelo", class: "form-label fw-bold" %>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-car-front"></i></span>
+        <%= form.text_field :modelo, class: "form-control #{'is-invalid' if veiculo.errors[:modelo].any?}", placeholder: "Uno", required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <%= form.label :ano, "Ano", class: "form-label fw-bold" %>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
+        <%= form.number_field :ano, class: "form-control #{'is-invalid' if veiculo.errors[:ano].any?}", placeholder: Date.current.year, required: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= link_to veiculos_path, class: "btn btn-outline-secondary fw-bold" do %>
+      <i class="bi bi-arrow-left"></i> Voltar
+    <% end %>
+    <%= form.submit "Salvar veiculo", class: "btn btn-success fw-bold px-4" %>
+  </div>
+<% end %>
